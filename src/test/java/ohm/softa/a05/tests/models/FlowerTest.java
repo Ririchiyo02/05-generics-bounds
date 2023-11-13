@@ -1,4 +1,6 @@
 package ohm.softa.a05.tests.models;
+import ohm.softa.a05.collections.SimpleFilter;
+import ohm.softa.a05.collections.SimpleList;
 import ohm.softa.a05.model.*;
 import org.junit.jupiter.api.Test;
 

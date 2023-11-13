@@ -4,19 +4,22 @@ import ohm.softa.a05.collections.*;
 
 import java.util.Iterator;
 
-public class PlantBed implements SimpleList<Plant> {
-    @Override
-    public void add(Plant o) {
+public class PlantBed<T extends Plant> {
+    private SimpleList<T> plants;
 
+    public PlantBed() {
+        plants = new SimpleListImpl<>();
     }
 
-    @Override
-    public int size() {
-        return 0;
+    public void add(T plant){
+        plants.add(plant);
     }
 
-    @Override
-    public Iterator<Plant> iterator() {
-        return null;
+    public int size(){
+        return plants.size();
+    }
+
+    public SimpleList<T> getPlantsByColor(PlantColor color){
+        return this.plants.filter(p -> p.getColor().equals(color));
     }
 }
