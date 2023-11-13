@@ -2,10 +2,12 @@ package ohm.softa.a05.model;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.util.Objects;
+
 public abstract class Plant implements Comparable<Plant>{
-    private double height;
-    private String family;
-    private String name;
+    private final double height;
+    private final String family;
+    private final String name;
 
     protected Plant(double height, String family, String name) {
         if(family == null || family.length() == 0) throw new IllegalArgumentException("Specify a family");
@@ -42,5 +44,18 @@ public abstract class Plant implements Comparable<Plant>{
     @Override
     public int compareTo(Plant plant) {
         return Double.compare(this.getHeight(), plant.getHeight());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Plant plant = (Plant) o;
+        return Double.compare(height, plant.height) == 0 && Objects.equals(family, plant.family) && Objects.equals(name, plant.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(height, family, name);
     }
 }
